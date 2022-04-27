@@ -53,3 +53,18 @@ form > * > * {
 .errors {
   color: red;
 }
+
+.users-display {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user {
+  border: 1px solid white;
+  width: 100%;
+  padding: 10%;
+  margin: 10%;
+  border-radius: 10px;
+}  

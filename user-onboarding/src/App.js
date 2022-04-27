@@ -28,7 +28,7 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
-  const [responses, setResponses] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const validate = (name,value) => {
     yup.reach(schema, name)
@@ -42,9 +42,11 @@ function App() {
   }
 
   const sendPost = newMember => {
-    axios.post(' URL GOES HERE ')
+    axios.post('https://reqres.in/api/users', newMember)
       .then(res => {
-        console.log(res) })
+        console.log(res);
+        setUsers([ ...users, res]); 
+      })
       .catch(err => console.error(err))
   }
  
@@ -57,7 +59,7 @@ function App() {
 
   const onSubmit = evt => {
     evt.preventDefault();
-    console.log(evt);
+    sendPost(formValues);
     setFormValues(initialFormValues);
   }
 
@@ -69,12 +71,19 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h4>Current Users:</h4>
-        <pre>
-          { responses.map(response => {
-              return JSON.stringify(response) 
+        <h3>Current Users:</h3>
+        <div className="users-display">
+          { users.map(user => {
+              return (
+                <div className="user">
+                  <h4>{ 'Name: '+user.data.first_name+' '+user.data.last_name }</h4>
+                  <p>{ 'email: '+user.data.email }</p>
+                  <p>{ 'Password: '+user.data.password }</p>
+                </div>
+                )
+                    
                 }) }
-        </pre>
+        </div>
         <Form
           initialFormValues={initialFormValues}
           formValues={formValues}
