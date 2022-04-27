@@ -49,3 +49,7 @@ form > * {
 form > * > * {
   margin: 5%;
 }
+
+.errors {
+  color: red;
+}

@@ -5,13 +5,24 @@ export default function Form(props) {
   const {
           initialFormValues,
           formValues,
-          setFormValues, 
+          setFormValues,
+          formErrors,
+          setFormErrors,
+          disabled,
+          setDisabled,
           onChange,
           onSubmit,
         } = props;
 
   return (
     <div className="form">
+      <div className="errors">
+        <p>{ formErrors.first_name }</p>
+        <p>{ formErrors.last_name }</p>
+        <p>{ formErrors.email }</p>
+        <p>{ formErrors.password }</p>
+        <p>{ formErrors.tos }</p>
+      </div>
       <form onSubmit={onSubmit}>
         <label>
           First Name:
@@ -59,7 +70,12 @@ export default function Form(props) {
             onChange={onChange}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button 
+          type="submit" 
+          disabled={disabled}
+        >
+          Submit
+        </button>
       </form>
     </div>
         )
