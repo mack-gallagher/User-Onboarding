@@ -35,10 +35,10 @@ function App() {
       .validate(value)
         .then(() => {
           setFormErrors({ ...formErrors, [name]: "" });
-          console.log(formErrors);
           }
         )
         .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
+    console.log(formErrors)
   }
 
   const sendPost = newMember => {
@@ -73,9 +73,9 @@ function App() {
       <header className="App-header">
         <h3>Current Users:</h3>
         <div className="users-display">
-          { users.map(user => {
+          { users.map((user, idx) => {
               return (
-                <div className="user">
+                <div className="user" key={idx}>
                   <h4>{ 'Name: '+user.data.first_name+' '+user.data.last_name }</h4>
                   <p>{ 'email: '+user.data.email }</p>
                   <p>{ 'Password: '+user.data.password }</p>
@@ -87,12 +87,10 @@ function App() {
         <Form
           initialFormValues={initialFormValues}
           formValues={formValues}
-          setFormValues={setFormValues}
           formErrors={formErrors}
           setFormErrors={setFormErrors}
           disabled={disabled}
           setDisabled={setDisabled}
-          setFormValues={setFormValues}
           onChange={onChange}
           onSubmit={onSubmit}
         />
