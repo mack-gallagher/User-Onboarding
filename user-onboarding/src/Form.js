@@ -66,7 +66,7 @@ export default function Form(props) {
             name="tos"
             type="checkbox"
             value="tos"
-            checked={formValues.tos}
+            checked={!!formValues.tos}
             onChange={onChange}
           />
         </label>

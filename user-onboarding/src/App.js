@@ -38,7 +38,6 @@ function App() {
           }
         )
         .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
-    console.log(formErrors)
   }
 
   const sendPost = newMember => {
@@ -52,6 +51,7 @@ function App() {
  
   const onChange = evt => {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+    console.log(value);
     const name = evt.target.name;
     validate(name, value);
     setFormValues({ ...formValues, [name]: value});
